@@ -78,6 +78,8 @@ public class CalculatorTest {
         assertEquals(2,Calculator.static_addition(1,1));
     }
 
+    //https://stackoverflow.com/questions/2469911/how-do-i-assert-my-exception-message-with-junit-test-annotation
+    //check inject mocks for example aslo along with this
 
     //static mocking,inject mocks
 
