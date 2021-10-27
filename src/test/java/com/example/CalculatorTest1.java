@@ -5,16 +5,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import com.example.TrignometricFunctions;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-//import org.mockito.runners.MockitoJUnitRunner;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.junit.Assert.*;
 
-@RunWith(MockitoJUnitRunner.class)
-public class CalculatorTest {
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Calculator.class)
+public class CalculatorTest1 {
 
     Calculator c;
 
@@ -25,13 +26,30 @@ public class CalculatorTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         c=new Calculator(t);
-        System.out.println( t);
+        System.out.println(t);
     }
 
     @After
     public void tearDown() throws Exception {
         c=null;
     }
+
+
+    @Test
+    public void static_method_testing_withPowerMockito(){
+        PowerMockito.mockStatic(Calculator.class);
+        PowerMockito.when(Calculator.static_addition(1,1)).thenReturn(2);
+
+        int a=Calculator.static_addition(1,1);
+        //assertEquals(2,Calculator.static_addition(1,1));
+        //PowerMockito.verifyStatic(Mockito.times(1));
+
+        assertTrue(a==2);
+
+
+    }
+
+
 
     @Test
     public void add_positiveInteres_RetunsCorrect() {
@@ -72,10 +90,13 @@ public class CalculatorTest {
     }
 
 
-    //testing static method by directly calling classname.method
+    //example for static mocking
+    //this is a way of testing static methods in dependent class this is rare  scenario mostly people dont use but keep in mind
+    //here we have a static method in Trignometric function class and we cannot call that with object.method so we are using  classname.method name
     @Test
-    public void checkStaticMethod(){
-        assertEquals(2,Calculator.static_addition(1,1));
+    public void testStatic(){
+        int b=c.staticTestinDependentClass(1,1);
+        assertEquals(2,b);
     }
 
 

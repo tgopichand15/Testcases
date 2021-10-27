@@ -18,6 +18,11 @@ public class Calculator{
         return a+b;
     }
 
+
+    public static int static_addition(int a,int b){
+        return a+b;
+    }
+
     public int sub(int a,int b){
         return a-b;
     }
@@ -30,9 +35,18 @@ public class Calculator{
         return a/b;
     }
 
+    public double cosine(double value){
+        return tf.cosine(value);
+    }
+
 
     public int[] returnArray(int[] a){
         return a;
+    }
+
+
+    public int staticTestinDependentClass(int a,int b) {
+        return TrignometricFunctions.add(1,1);
     }
 
 
